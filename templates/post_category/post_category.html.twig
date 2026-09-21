@@ -1,0 +1,43 @@
+{% extends 'base_blog.html.twig' %}
+
+{% block title %}Início do Blog{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h2 class="mb-3">Exibindo posts da categoria: {{ category.name }}</h2>
+        <div class="row">
+
+            {% for post in posts %}
+
+                <div class="col-md-4 mb-4">
+
+                    <div class="card h-100 shadow-sm border-0">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                {{ post.title }}
+                            </h5>
+
+                            <p class="card-text text-muted">
+                                {{ post.text|slice(0, 90) ~'...'}}
+                            </p>
+
+                            <a href="{{ path('app_post', {'slug': post.slug}) }}" class="btn btn-outline-primary btn-sm">
+                                Ler mais
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
