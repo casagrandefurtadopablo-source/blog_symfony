@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Post;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,10 +20,10 @@ class PostType extends AbstractType
             ->add('createdAt', null, [
                 'widget' => 'single_text'
             ])
-            ->add('slug')
+            ->add('slug', HiddenType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }

@@ -13,7 +13,9 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
-        ;
+            ->add('createdAt', null, [
+                'widget' => 'single_text'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
