@@ -1,33 +1,54 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-turbo="false">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg blog-navbar" data-turbo="false">
+    <div class="container">
 
-        <a class="navbar-brand" href="{{ path('app_home') }}">Blog</a>
+        {# Logo #}
+        <a class="navbar-brand blog-brand" href="{{ path('app_home') }}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="32"
+                 height="32"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor"
+                 stroke-width="1.8">
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/>
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/>
+            </svg>
 
-        <button class="navbar-toggler"
+            <span>Blog</span>
+        </a>
+
+        {# Botão mobile #}
+        <button class="navbar-toggler blog-toggler"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Abrir menu">
+
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {# Links #}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 blog-nav-links">
 
                 <li class="nav-item">
-                    <a class="nav-link active"
+                    <a class="nav-link blog-nav-link active"
                        aria-current="page"
                        href="{{ path('app_home') }}">
-                        Home
+                        Início
                     </a>
                 </li>
 
                 <li class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle"
+                    <a class="nav-link blog-nav-link dropdown-toggle"
                        href="#"
                        role="button"
                        data-bs-toggle="dropdown"
@@ -35,37 +56,49 @@
                         Categorias
                     </a>
 
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu blog-dropdown">
+
                         {% for category in categories %}
+
                             <li>
                                 <a class="dropdown-item"
                                    href="{{ path('app_category', {'slug': category.slug}) }}">
                                     {{ category.name }}
                                 </a>
                             </li>
+
                         {% endfor %}
+
                     </ul>
 
                 </li>
 
             </ul>
 
+            {# Pesquisa #}
             <form action="{{ path('app_search') }}"
                   method="POST"
-                  class="d-flex"
+                  class="blog-search"
                   role="search">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="19"
+                     height="19"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <circle cx="11" cy="11" r="7"/>
+                    <path stroke-linecap="round"
+                          d="m20 20-4-4"/>
+                </svg>
 
                 <input
                     name="search"
-                    class="form-control me-2"
                     type="search"
-                    placeholder="Search"
-                    aria-label="Search"
+                    placeholder="Buscar posts..."
+                    aria-label="Buscar posts"
                 >
-
-                <button class="btn btn-outline-success" type="submit">
-                    Search
-                </button>
 
             </form>
 
